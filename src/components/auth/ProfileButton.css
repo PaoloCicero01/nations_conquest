@@ -1,0 +1,68 @@
+.profile-button {
+  position: absolute;
+  z-index: 100;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 130px;
+  min-height: 44px;
+  max-width: 240px;
+  padding: 10px 16px;
+  border: 2px solid #ffd54f;
+  border-radius: 999px;
+  background:linear-gradient(180deg,rgba(25, 25, 25, 0.96),rgba(6, 6, 6, 0.96));
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:0 5px 18px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  transition:transform 0.2s ease,border-color 0.2s ease,background 0.2s ease;
+}
+
+.profile-button:hover {
+  transform: translateY(-2px);
+  border-color: #ffffff;
+  background:linear-gradient(180deg,rgba(90, 45, 5, 0.97),rgba(25, 12, 2, 0.97));
+}
+
+.profile-button:active {
+  transform: scale(0.97);
+}
+
+.profile-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.profile-button-icon {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.profile-button span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .profile-button {
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    min-width: 105px;
+    min-height: 39px;
+    max-width: 160px;
+    padding: 8px 11px;
+    font-size: 0.85rem;
+  }
+
+  .profile-button-icon {
+    font-size: 1rem;
+  }
+}

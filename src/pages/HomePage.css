@@ -1,0 +1,179 @@
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /*Se non è supportato prende la prima*/
+  position: relative;
+  overflow: hidden; 
+  background-repeat: no-repeat;
+  background-color: #090909;
+  /*Mantiene le dimensioni senza deformare l'immagine*/
+  background-size: cover;
+  background-position: center 42%;
+}
+
+/* Crea una leggera ombra sopra l'immagine di sfondo */
+.home-page::after {
+  content: ""; /*ci serve solo per generare un contenuto */
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Non deve interferire con i click dell' utente */
+/*L'ombra diventa più scura in basso dove ci sono i pulsanti */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0.03) 45%,
+      rgba(0, 0, 0, 0.22) 100%
+    );
+}
+
+.home-menu {
+  position: absolute; /*rispetto alla home.page */
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(20px, 6vh, 62px); /* Per il responsive design */
+  transform: translateX(-50%);
+  display: flex; /* Menu in un contenitore FlexBox */
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 13px); /*Spazio tra gli elementi (dinamico)*/
+  width: min(82vw, 360px);
+}
+
+.home-button {
+  width: 100%;
+  min-height: 46px;
+  padding: clamp(9px, 1.4vh, 12px)24px; 
+  box-sizing: border-box; /* Includiamo padding e bordi nella larghezza finale */
+  border: none;
+  border-radius: 10px;
+  background:linear-gradient(180deg,#b30000,#8f0000);
+  color: #ffffff; /* Colore testo */
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: bold;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer; /* Modifica il cursore sul pulsante */
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.34);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Pulsante diventa più chiaro quando puntato */
+.home-button:hover {
+  background:linear-gradient(180deg,#c90000,#a30000);
+  transform: scale(1.03);
+  box-shadow:0 7px 18px rgba(0, 0, 0, 0.42);
+}
+
+.home-button-online {
+  background: linear-gradient(180deg,#b30000,#8f0000);
+}
+
+.home-button-online:hover {
+  background: linear-gradient(180deg,#c90000,#a30000);
+}
+
+/* Offline mode */
+.home-button-disabled,
+.home-button-disabled:hover,
+.home-button:disabled {
+  background:linear-gradient(180deg,#555555,#333333);
+  color: #d6d6d6;
+  cursor: not-allowed;
+  opacity: 0.8;
+  filter: grayscale(0.5); /* Riduce saturazione dei colori */
+  transform: none;
+  box-shadow:0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.home-button:active {
+  transform: scale(0.98);
+}
+
+.home-button:disabled:active {
+  transform: none;
+}
+
+/* Applica lo stile quando il browser ritiene opportuno mostrare un indicatore di focus */
+.home-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.offline-message {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border: 1px solid rgba(255, 196, 0, 0.85);
+  border-radius: 10px;
+  background: rgba(8, 8, 8, 0.9);
+  color: #ffe7a3;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Per monitor molto larghi */
+@media (min-aspect-ratio: 16 / 9) {
+  .home-page {
+    background-size: cover;
+    background-position: center 42%;
+  }
+}
+
+/* Per monitor molto bassi */
+@media (max-height: 720px) {
+  .home-menu {
+    bottom: 12px;
+    gap: 6px;
+  }
+
+  .home-button {
+    min-height: 39px;
+    padding: 7px 18px;
+    font-size: 0.96rem;
+  }
+
+  .offline-message {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    line-height: 1.25;
+  }
+}
+
+/* Smartphone */
+@media (max-width: 600px) {
+  .home-page {
+    background-size: auto 100%;
+    background-position: center center;
+  }
+
+  .home-menu {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    width: min(88vw, 330px);
+    gap: 8px;
+  }
+
+  .home-button {
+    min-height: 44px;
+    padding: 9px 18px;
+    font-size: 1rem;
+  }
+
+  .offline-message {
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-menu {
+    width: min(90vw, 310px);
+  }
+}

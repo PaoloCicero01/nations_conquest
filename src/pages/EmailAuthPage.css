@@ -1,0 +1,277 @@
+.email-auth-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: max(76px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  background-color: #090909;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.email-auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:radial-gradient(circle at center,rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.86)),linear-gradient( 180deg,rgba(5, 8, 14, 0.35), rgba(5, 8, 14, 0.82));
+  pointer-events: none;
+}
+
+.email-auth-back-button {
+  position: fixed;
+  z-index: 3;
+  top:max(18px, env(safe-area-inset-top));
+  left: max(18px, env(safe-area-inset-left));
+  min-height: 42px;
+  padding: 9px 15px;
+  border:1px solid rgba(255, 213, 79, 0.72);
+  border-radius: 999px;
+  background:rgba(8, 10, 15, 0.92);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:0 5px 16px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(8px);
+}
+
+.email-auth-back-button:hover {
+  border-color: #ffffff;
+  background:rgba(70, 32, 5, 0.95);
+}
+
+.email-auth-card {
+  position: relative;
+  z-index: 2;
+  width:min(92vw,510px);
+  box-sizing: border-box;
+  padding:clamp(24px,4vw,38px);
+  border:2px solid rgba(218, 166, 47, 0.8);
+  border-radius: 20px;
+  background:linear-gradient(155deg,rgba(9, 15, 25, 0.98), rgba(4, 8, 14, 0.98)
+    );
+  color: #ffffff;
+  box-shadow:0 25px 70px rgba(0, 0, 0, 0.72),inset 0 0 30px rgba(255, 184, 48, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.email-auth-header {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.email-auth-kicker {
+  margin: 0 0 10px;
+  color: #d8ad50;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.email-auth-symbol {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 14px;
+  border:2px solid rgba(255, 213, 79, 0.82);
+  border-radius: 50%;
+  background:radial-gradient(circle,#542d09,#140b04);
+  color: #ffe29a;
+  font-size: 2rem;
+  box-shadow:0 0 24px rgba(255, 176, 32, 0.22);
+}
+
+.email-auth-header h1,
+.email-auth-card > h1 {
+  margin: 0 0 10px;
+  color: #fff3ce;
+  font-family: Georgia, "Times New Roman",serif;
+  font-size:clamp(1.8rem, 5vw, 2.45rem);
+  line-height: 1.08;
+  text-align: center;
+}
+
+.email-auth-header > p:last-child,
+.email-auth-description {
+  margin: 0 auto;
+  color:rgba(255,255,255,0.7);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.email-auth-mode-selector {
+  display: grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border:1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background:rgba(0, 0, 0, 0.27);
+}
+
+.email-auth-mode-selector button {
+  min-height: 42px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color:rgba(255, 255, 255, 0.64);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.email-auth-mode-selector button.selected {
+  background:linear-gradient(180deg, #b30000,#810000);
+  color: #ffffff;
+  box-shadow:0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.email-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.email-auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.email-auth-field span {
+  color: #ffe2a0;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.email-auth-field input {
+  width: 100%;
+  min-height: 46px;
+  box-sizing: border-box;
+  padding: 11px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  outline: none;
+  background:rgba(0, 0, 0, 0.37);
+  color: #ffffff;
+  font: inherit;
+  transition:  border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.email-auth-field input::placeholder {
+  color:rgba(255, 255, 255, 0.36);
+}
+
+.email-auth-field input:focus {
+  border-color: #ffd54f;
+  box-shadow:0 0 0 3px rgba(255, 213, 79, 0.13);
+}
+
+.email-auth-field input:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.email-auth-primary-button {
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 11px 18px;
+  border:1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 11px;
+  background: linear-gradient(180deg,#b80000, #820000);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow:  0 5px 15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.email-auth-primary-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.email-auth-primary-button:disabled {
+  cursor: wait;
+  opacity: 0.64;
+}
+
+.email-auth-link-button {
+  display: block;
+  margin: 15px auto 0;
+  border: none;
+  background: transparent;
+  color: #ffd86a;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.email-auth-link-button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.email-auth-error,
+.email-auth-success {
+  margin: 0;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.email-auth-error {
+  border:1px solid rgba(255, 73, 73, 0.65);
+  background:rgba(115, 8, 8, 0.45);
+  color: #ffb5b5;
+}
+
+.email-auth-success {
+  border:1px solid rgba(89, 205, 115, 0.6);
+  background:rgba(20, 91, 39, 0.35);
+  color: #baffc9;
+}
+
+.email-auth-footer {
+  margin: 20px 0 0;
+  color:rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .email-auth-page {
+    align-items: flex-start;
+    padding:max(70px, env(safe-area-inset-top)) 12px max(18px,env(safe-area-inset-bottom));
+  }
+
+  .email-auth-back-button {
+    top:max(10px,env(safe-area-inset-top));
+    left:max(10px,env(safe-area-inset-left));
+    min-height: 38px;
+    padding: 7px 11px;
+    font-size: 0.85rem;
+  }
+
+  .email-auth-card {
+    width: 100%;
+    padding: 22px 16px;
+    border-radius: 15px;
+  }
+}

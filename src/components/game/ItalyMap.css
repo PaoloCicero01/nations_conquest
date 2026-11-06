@@ -1,0 +1,414 @@
+.italy-map-wrapper {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+
+/* Area visibile della mappa */
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  display: block;
+  cursor: grab;
+  user-select: none;
+}
+
+.map-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+/* SVG della mappa */
+.italy-map {
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+  flex-shrink: 0;
+  user-select: none;
+  touch-action: none;
+  transform-origin: top left;
+  transition:width 0.12s ease-out, height 0.12s ease-out;
+}
+
+/* Barra di scorrimento */
+.map-viewport::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.map-viewport::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.map-viewport::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 10px;
+}
+
+.map-viewport::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* Regioni */
+.italy-map path {
+  stroke: #1f1f1f;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: fill 0.18s ease,filter 0.18s ease,opacity 0.18s ease,stroke 0.18s ease,stroke-width 0.18s ease;
+}
+
+.italy-map path:hover {
+  filter: brightness(1.18);
+}
+
+.map-viewport.is-dragging .italy-map path {
+  cursor: grabbing;
+}
+
+.italy-region {
+  transition:opacity 0.18s ease,filter 0.18s ease,stroke 0.18s ease,stroke-width 0.18s ease;
+}
+
+/* Regione da cui parte l'attacco */
+.attacking-region {
+  stroke: #ffffff !important;
+  stroke-width: 5px !important;
+  filter:brightness(1.25)drop-shadow(0 0 7px rgba(255, 255, 255, 0.85));
+}
+
+/* Regione nemica selezionabile */
+.attackable-region {
+  stroke: #ff3b30 !important;
+  stroke-width: 5px !important;
+  filter:brightness(1.2) drop-shadow(0 0 8px rgba(255, 59, 48, 0.85));
+  cursor: crosshair !important;
+}
+
+/* Regione scelta come difensore */
+.defending-region {
+  stroke: #ffeb3b !important;
+  stroke-width: 6px !important;
+  filter:brightness(1.3) drop-shadow(0 0 9px rgba(255, 235, 59, 0.9));
+}
+
+/* Regioni non coinvolte */
+.not-attackable-region {
+  opacity: 0.35;
+  filter: grayscale(0.7);
+}
+
+/* Effetti del combattimento */
+.battle-effects-layer,
+.battle-effect {
+  pointer-events: none;
+}
+
+.explosion {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-container 0.65s ease-out forwards;
+}
+
+.explosion-glow {
+  fill: rgba(255, 183, 0, 0.45);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-glow 0.55s ease-out forwards;
+}
+
+.explosion-core {
+  fill: #fff176;
+  stroke: #ff6d00;
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-core 0.45s ease-out forwards;
+}
+
+.explosion-ring {
+  fill: none;
+  stroke: #ff3d00;
+  stroke-width: 5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-ring 0.65s ease-out forwards;
+}
+
+.explosion-ray {
+  stroke: #ffb300;
+  stroke-width: 5;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:explosion-ray 0.55s ease-out forwards;
+}
+
+/* Numero pedine perse */
+.lost-troops-text {
+  font-size: 42px;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.85);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  animation:lost-troops-floating 1.15s ease-out forwards;
+}
+
+/*Contatori pedine */
+.troop-counters-layer,
+.troop-counter {
+  pointer-events: none;
+}
+
+.troop-counter {
+  user-select: none;
+
+  filter:
+    drop-shadow(
+      0 1px 3px rgba(0, 0, 0, 0.45)
+    );
+}
+
+/* Sfondo piccolo del contatore */
+.troop-counter-background {
+  fill: rgba(24, 28, 36, 0.9);
+
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1px;
+}
+
+/* Stile comune dei testi */
+.troop-counter-pawn,
+.troop-counter-times,
+.troop-counter-number {
+  text-anchor: middle;
+  dominant-baseline: middle;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+/* Pedone */
+.troop-counter-pawn {
+  fill: #ffffff;
+
+  font-family:
+    "Segoe UI Symbol",
+    "DejaVu Sans",
+    Arial,
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* Simbolo × */
+.troop-counter-times {
+  fill: rgba(255, 255, 255, 0.82);
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Numero pedine */
+.troop-counter-number {
+  fill: #ffffff;
+
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+/* =========================================================
+   ANIMAZIONI
+   ========================================================= */
+
+@keyframes explosion-container {
+  0% {
+    opacity: 0;
+    transform:
+      scale(0.2)
+      rotate(0deg);
+  }
+
+  20% {
+    opacity: 1;
+    transform:
+      scale(1.2)
+      rotate(15deg);
+  }
+
+  55% {
+    opacity: 1;
+    transform:
+      scale(1)
+      rotate(-8deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      scale(1.6)
+      rotate(5deg);
+  }
+}
+
+@keyframes explosion-glow {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+@keyframes explosion-core {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes explosion-ring {
+  0% {
+    opacity: 1;
+    transform: scale(0.2);
+    stroke-width: 7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.8);
+    stroke-width: 1;
+  }
+}
+
+@keyframes explosion-ray {
+  0% {
+    opacity: 0;
+    stroke-dasharray: 0 30;
+  }
+
+  30% {
+    opacity: 1;
+    stroke-dasharray: 18 30;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dasharray: 0 30;
+  }
+}
+
+@keyframes lost-troops-floating {
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(10px)
+      scale(0.5);
+  }
+
+  15% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1.25);
+  }
+
+  35% {
+    opacity: 1;
+
+    transform:
+      translateY(-12px)
+      scale(1);
+  }
+
+  70% {
+    opacity: 0.9;
+
+    transform:
+      translateY(-42px)
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-75px)
+      scale(0.9);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .map-viewport::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  .italy-map path {
+    stroke-width: 1.2;
+  }
+
+  .troop-counter {
+    opacity: 0.97;
+  }
+}
+
+/* Accessibilità: riduce le animazioni */
+@media (prefers-reduced-motion: reduce) {
+  .italy-map,
+  .italy-map path {
+    transition: none;
+  }
+
+  .explosion,
+  .explosion-glow,
+  .explosion-core,
+  .explosion-ring,
+  .explosion-ray,
+  .lost-troops-text {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}

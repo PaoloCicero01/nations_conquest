@@ -1,0 +1,171 @@
+.settings-page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-y: auto; /* Gestisce automaticamente il comportamento degli elementi che superano i confini verticali */
+  background: radial-gradient(circle at top, rgba(95, 0, 0, 0.45), transparent 45%), #090909;
+  color: #ffffff; /* Colore testo */
+}
+
+/* Controlliamo il pannello che contiene tutte le impostazioni */
+.settings-card {
+  width: min(92vw, 720px);
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background: rgba(15, 15, 15, 0.94);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.settings-back-button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #dddddd;
+  font-size: 1rem;
+  cursor: pointer; /* Cliccabile */
+}
+
+.settings-back-button:hover {
+  color: #ffffff;
+}
+
+.settings-header {
+  margin: 24px 0 30px;
+}
+
+/* Combinatore discendente */
+.settings-header p {
+  margin: 0 0 6px;
+  color: #d32f2f;
+  font-weight: bold;
+  letter-spacing: 0.08em; /* Sarebbe 0.08 * dimensione carattere */
+  text-transform: uppercase;
+}
+
+.settings-header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 5vw, 3rem); /* Rem = dimensione del font radice */
+}
+
+.settings-header span {
+  color: #cfcfcf;
+}
+
+/* Musica, effetti sonori e animazioni */
+.settings-section {
+  padding: 22px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.settings-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribuiamo lo spazio tra gli elementi */
+  gap: 20px;
+}
+
+.settings-section-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* Paragrafi all'interno delle intestazioni delle sezioni */
+.settings-section-title p {
+  margin: 6px 0 0;
+  color: #bcbcbc;
+}
+
+/* Viene applicata alla classe che contiene il checkbox e il testo */
+.settings-switch {
+  display: inline-flex; /* L'elemento si comporta all'esterno come un inline-level */
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-switch input {
+  width: 20px;
+  height: 20px;
+  accent-color: #c00000;
+}
+
+/* Per disporre tre elementi sulla stessa riga */
+.settings-slider-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(180px, 2fr) 58px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.settings-slider-row input {
+  width: 100%;
+  accent-color: #c00000;
+}
+
+/* Tutti gli input disabilitati */
+.settings-slider-row input:disabled {
+  opacity: 0.45;
+}
+
+/* Tutti gli elementi strong dello slider */
+.settings-slider-row strong {
+  text-align: right;
+}
+
+.settings-reset-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  background: transparent;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-reset-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Quando vengono disattivate le animazioni, viene aggiunta la classe all'elemento html */
+.reduced-game-animations *,
+.reduced-game-animations *::before,
+.reduced-game-animations *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important; /* Evita lo scorrimento fluido sugli elementi interessati */
+}
+
+/* Adattamento per smartphone */
+@media (max-width: 600px) {
+  .settings-page {
+    place-items: start center;
+    padding: max(18px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom));
+  }
+
+  .settings-card {
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  .settings-section-title {
+    align-items: flex-start;
+  }
+
+  .settings-slider-row {
+    grid-template-columns: 1fr 54px;
+    gap: 10px;
+  }
+
+  .settings-slider-row > span {
+    grid-column: 1 / -1;
+  }
+}

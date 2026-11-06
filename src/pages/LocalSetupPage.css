@@ -1,0 +1,296 @@
+.local-setup-page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box; /* Dimensione riguarda sia contenuto che padding che bordi */
+}
+/* Contiene gli elementi della configurazione */
+.local-setup-card {
+  width: min(760px, 100%);
+  display: grid;
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  background-color: rgba(13, 19, 29, 0.94);
+  color: #ffffff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px); /*Sfochiamo lo sfondo visibile attraverso l'elemento*/
+}
+
+.local-setup-header {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+}
+
+.local-setup-header p,
+.local-setup-header h1,
+.local-setup-header span {
+  margin: 0;
+}
+
+.local-setup-header p {
+  color: #9fb0c4;
+  font-size: 0.78rem;
+  font-weight: 800; /*Per farlo sembrare marcato */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.local-setup-header h1 {
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
+}
+
+.local-setup-header span {
+  color: #c2ccd8;
+  line-height: 1.5; /*Altezza della riga 1.5 di quella del font */
+}
+
+.local-player-list{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /*Crea due colonne */
+  gap: 16px;
+}
+
+.local-player-field {
+  display: grid;
+  gap: 8px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.055);
+}
+
+.local-player-label { /*Flexbox nell'etichetta del giocatore */
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+}
+
+.local-player-color { /*Pallino del colore del giocatore (determinato dinamicamente)*/
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+}
+
+.local-player-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+  background-color: rgba(4, 8, 14, 0.7);
+  color: #ffffff;
+  font: inherit; /*  Eredità le proprietà del font del genitore*/
+  box-sizing: border-box;
+}
+
+.local-player-field input::placeholder {
+  color: #7f8b9a;
+}
+
+.local-player-field input:focus {
+  border-color: #71a7ff;
+  outline: 2px solid rgba(113, 167, 255, 0.25);
+}
+
+.local-player-field small {
+  color: #9eabba;
+}
+
+.local-setup-error {
+  margin: 0;
+  padding: 11px 13px;
+  border-left: 4px solid #ef5350; /*Linea sul lato sinistro */
+  border-radius: 8px;
+  background-color: rgba(239, 83, 80, 0.12);
+  color: #ffc5c3;
+  line-height: 1.45;
+}
+
+.local-setup-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.local-setup-actions button {
+  min-height: 48px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.local-back-button {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.local-start-button {
+  border: 0;
+  background-color: #4d8df7;
+  color: #ffffff;
+}
+
+.local-start-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+/* Qudno il puntatore passa sopra ai pulsanti che non sono disabilitati */
+.local-start-button:not(:disabled):hover,
+.local-back-button:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 650px) {
+  .local-setup-page {
+    padding: 16px;
+  }
+  .local-setup-card {
+    padding: 20px;
+  }
+  .local-player-list,
+  .local-setup-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Partita locale salvata */
+.local-saved-game-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 14px;
+  background: rgba(15, 20, 30, 0.82);
+}
+
+.local-saved-game-card > div:first-child { /*Selezioniamo il primo figlio div del genitore */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.local-saved-game-card p,
+.local-saved-game-card strong,
+.local-saved-game-card small {
+  margin: 0;
+}
+
+.local-saved-game-card p {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.local-saved-game-card strong {
+  font-size: 1.05rem;
+}
+
+.local-saved-game-card small {
+  opacity: 0.72;
+}
+
+.local-saved-game-actions { /*Continua partita ed elimina salvataggio */
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 700px) {
+  .local-saved-game-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .local-saved-game-actions {
+    justify-content: stretch;
+  }
+
+  .local-saved-game-actions button {
+    flex: 1;
+  }
+}
+
+.local-player-count-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border:1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.32);
+  text-align: center;
+}
+
+.local-player-count-section h2 {
+  margin: 0 0 5px;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.local-player-count-section p {
+  margin: 0 0 12px;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.local-player-count-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.local-player-count-button {
+  min-height: 44px;
+  border:2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  background:rgba(20, 20, 20, 0.86);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.local-player-count-button:hover {
+  transform: translateY(-2px); /*Due pixel più in alto*/
+  border-color:rgba(255, 255, 255, 0.7);
+}
+
+.local-player-count-button.selected { /*Elementi di entrambe le classi */
+  border-color: #ffd54f;
+  background:linear-gradient(180deg,#b30000,#810000);
+  box-shadow:0 0 0 2px rgba(255, 213, 79, 0.18);
+}
+
+.local-player-count-button:focus-visible {
+  outline:3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .local-player-count-section {
+    padding: 11px 12px;
+  }
+
+  .local-player-count-button {
+    min-height: 42px;
+  }
+}

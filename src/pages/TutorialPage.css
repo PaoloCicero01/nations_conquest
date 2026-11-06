@@ -1,0 +1,316 @@
+.tutorial-page {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  padding: clamp(20px, 4vw, 50px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  background: radial-gradient(circle at top, rgba(54, 103, 214, 0.16), transparent 35%), linear-gradient(rgba(8, 12, 18, 0.96), rgba(8, 12, 18, 0.99));
+  color: #ffffff;
+}
+
+.tutorial-container {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tutorial-header {
+  position: relative;
+  padding: 12px 0 22px;
+  text-align: center;
+}
+
+.tutorial-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.tutorial-back-button:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.tutorial-back-button:active {
+  transform: scale(0.98);
+}
+
+.tutorial-header h1 {
+  margin: 5px 0 10px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.tutorial-header > p:last-child {
+  max-width: 680px;
+  margin: 0 auto;
+  color: #c7d0dc;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.tutorial-label {
+  margin: 0;
+  color: #e85b58;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tutorial-section {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 17px;
+  padding: clamp(17px, 3vw, 25px);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-left: 5px solid #c93c3c;
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+}
+
+.tutorial-section h2 {
+  margin: 0 0 11px;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+}
+
+.tutorial-section p {
+  margin: 0 0 11px;
+  color: #d6dde6;
+  line-height: 1.68;
+}
+
+.tutorial-section p:last-child {
+  margin-bottom: 0;
+}
+
+.tutorial-number {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: #c93c3c;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  box-shadow: 0 0 17px rgba(201, 60, 60, 0.28);
+}
+
+.tutorial-offensive {
+  border-left-color: #d65a32;
+}
+
+.tutorial-offensive .tutorial-number {
+  background-color: #d65a32;
+}
+
+.tutorial-defensive {
+  border-left-color: #3777c8;
+}
+
+.tutorial-defensive .tutorial-number {
+  background-color: #3777c8;
+}
+
+.tutorial-transfer {
+  border-left-color: #6a8fd8;
+}
+
+.tutorial-transfer .tutorial-number {
+  background-color: #6a8fd8;
+}
+
+.tutorial-victory {
+  border-left-color: #d5a93d;
+}
+
+.tutorial-victory .tutorial-number {
+  background-color: #d5a93d;
+  color: #171c24;
+}
+
+.tutorial-rule-box {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 3px solid #efb85c;
+  border-radius: 8px;
+  background-color: rgba(239, 184, 92, 0.1);
+  color: #f2d39c;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.tutorial-transfer-rule {
+  border-left-color: #6a8fd8;
+  background-color: rgba(106, 143, 216, 0.11);
+  color: #c9d8f3;
+}
+
+.tutorial-formula-card {
+  display: grid;
+  gap: 7px;
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 11px;
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.tutorial-formula-card strong {
+  color: #ffffff;
+}
+
+.tutorial-formula-card span {
+  color: #bbc5d1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tutorial-formula-card code {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #e7edf5;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.tutorial-formula-attack {
+  border-color: rgba(214, 90, 50, 0.4);
+}
+
+.tutorial-formula-defence {
+  border-color: rgba(55, 119, 200, 0.45);
+}
+
+.tutorial-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tutorial-choice {
+  display: grid;
+  gap: 7px;
+  padding: 15px;
+  border-radius: 11px;
+}
+
+.tutorial-choice strong {
+  font-size: 1.05rem;
+}
+
+.tutorial-choice span {
+  color: #c7d0dc;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.tutorial-choice-attack {
+  border: 1px solid rgba(214, 90, 50, 0.48);
+  background-color: rgba(214, 90, 50, 0.1);
+}
+
+.tutorial-choice-defence {
+  border: 1px solid rgba(55, 119, 200, 0.5);
+  background-color: rgba(55, 119, 200, 0.1);
+}
+
+.tutorial-victory-box {
+  border-left-color: #d5a93d;
+  background-color: rgba(213, 169, 61, 0.11);
+  color: #f1d891;
+}
+
+.tutorial-footer {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+  background: radial-gradient(circle at top, rgba(54, 103, 214, 0.18), transparent 55%), rgba(255, 255, 255, 0.045);
+  text-align: center;
+}
+
+.tutorial-footer h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.tutorial-play-button {
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(180deg, #4f8ee8, #326ac0);
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.12s ease;
+}
+
+.tutorial-play-button:hover {
+  filter: brightness(1.12);
+}
+
+.tutorial-play-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 650px) {
+  .tutorial-page {
+    padding: 16px;
+  }
+
+  .tutorial-header {
+    padding-top: 58px;
+  }
+
+  .tutorial-back-button {
+    width: 100%;
+  }
+
+  .tutorial-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-number {
+    width: 37px;
+    height: 37px;
+  }
+
+  .tutorial-choice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-page *,
+  .tutorial-page *::before,
+  .tutorial-page *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
